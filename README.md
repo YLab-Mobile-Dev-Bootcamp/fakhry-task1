@@ -8,6 +8,10 @@ master : starter project (task1)\
 └─task2-widget-and-styling <br>
 &nbsp;&nbsp;&nbsp;&nbsp;└─task3-state-mangement-and-navigation
 
+## Demo Task 3
+<img src="https://cdn.discordapp.com/attachments/791866991995650081/875855177033347082/task3.gif" height=400> 
+
+
 ## Note untuk Pertemuan 3
 
 - State = data yang dapat berubah2 atau bisa juga disebut lifecycle
