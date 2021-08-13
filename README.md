@@ -1,6 +1,6 @@
 # Movie App
 
-A new Flutter project.
+App that show lists of movie poster and backdrop.
 
 ## Branch Structure
 
