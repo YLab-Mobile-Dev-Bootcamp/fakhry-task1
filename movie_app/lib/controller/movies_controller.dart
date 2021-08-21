@@ -47,7 +47,7 @@ class MoviesController extends GetxController {
           child: Image(
             fit: BoxFit.fill,
             image: NetworkImage(
-                BASE_IMAGE + movieTopRated.value.results![index].posterPath!),
+                BASE_IMAGE + movieTopRated.value.results ![index].posterPath!),
           ),
         ),
       ),

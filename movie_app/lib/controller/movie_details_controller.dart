@@ -4,7 +4,6 @@ import 'package:movie_app/models/movies_details_dto.dart';
 import 'package:movie_app/repositories/movie_db_api.dart';
 
 class MovieDetailsController extends GetxController {
-  // RxList<Movie> movies = movieList.obs;
   MovieDbApi _movieDbApi = MovieDbApi();
   Rx<MovieDetailsDto> movieDetails = MovieDetailsDto().obs;
 
