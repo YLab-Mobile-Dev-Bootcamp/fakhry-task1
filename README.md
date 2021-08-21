@@ -5,8 +5,8 @@ App that show lists of top rated and populars movies from [TheMovieDB API](https
 ## Branch Structure
 
 master : starter project (task1)\
-└─task2-widget-and-styling <br>
-&nbsp;&nbsp;&nbsp;&nbsp;└─task3-state-management-and-navigation
+└─task2-widget-and-styling\
+&nbsp;&nbsp;&nbsp;&nbsp;└─task3-state-management-and-navigation\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─task4-networking
 
 ## Demo App
