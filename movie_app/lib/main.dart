@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/routes/movies_binding.dart';
+import 'package:movie_app/routes/home_binding.dart';
 import 'package:movie_app/routes/routes.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       getPages: Routes.route,
       initialRoute: '/home',
-      initialBinding: MoviesBinding(),
+      initialBinding: HomeBinding(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

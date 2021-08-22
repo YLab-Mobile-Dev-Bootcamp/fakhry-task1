@@ -7,8 +7,8 @@ import 'package:movie_app/themes/app_theme.dart';
 import 'package:movie_app/themes/colors.dart';
 import 'package:movie_app/themes/dimens.dart';
 
-class DetailsPage extends StatelessWidget {
-  DetailsPage({Key? key}) : super(key: key);
+class MovieDetailsPage extends StatelessWidget {
+  MovieDetailsPage({Key? key}) : super(key: key);
 
   final MovieDetailsController _controller = Get.find();
 
