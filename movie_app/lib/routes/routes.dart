@@ -1,7 +1,7 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:movie_app/routes/movie_details_binding.dart';
 import 'package:movie_app/routes/movies_binding.dart';
-import 'package:movie_app/views/details_page.dart';
+import 'package:movie_app/views/movies/movie_details_page.dart';
 import 'package:movie_app/views/home_page.dart';
 
 class Routes {

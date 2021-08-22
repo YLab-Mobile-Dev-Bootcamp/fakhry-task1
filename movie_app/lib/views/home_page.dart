@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/themes/app_theme.dart';
 import 'package:movie_app/themes/colors.dart';
-import 'package:movie_app/views/movies_page.dart';
-import 'package:movie_app/views/tv_shows_page.dart';
+import 'package:movie_app/views/movies/movies_page.dart';
+import 'package:movie_app/views/tv/tv_shows_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
