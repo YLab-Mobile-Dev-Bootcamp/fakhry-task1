@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:movie_app/const/constants.dart';
 import 'package:movie_app/models/movies_details_dto.dart';
 import 'package:movie_app/models/movies_dto.dart';
+import 'package:movie_app/models/tv_show_details_dto.dart';
 import 'package:movie_app/models/tv_shows_dto.dart';
 
 class MovieDbApi {
@@ -88,6 +89,24 @@ class MovieDbApi {
       Response response = await _dio.get(BASE_API + path + param + API_KEY);
       if (response.statusCode == 200) {
         output = TvShowsDto.fromJson(response.data);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return output;
+  }
+
+  // Fetch tv shows details
+  Future<TvShowDetailsDto> getTvShowDetails(String tvId) async {
+    var path = 'tv/$tvId';
+    var param = '?api_key=';
+    TvShowDetailsDto output = TvShowDetailsDto();
+
+    try {
+      Dio _dio = Dio();
+      Response response = await _dio.get(BASE_API + path + param + API_KEY);
+      if (response.statusCode == 200) {
+        output = TvShowDetailsDto.fromJson(response.data);
       }
     } catch (e) {
       print(e);

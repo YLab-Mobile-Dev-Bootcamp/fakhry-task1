@@ -1,8 +1,10 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:movie_app/routes/movie_details_binding.dart';
 import 'package:movie_app/routes/home_binding.dart';
-import 'package:movie_app/views/movies/movie_details_page.dart';
+import 'package:movie_app/routes/movie_details_binding.dart';
+import 'package:movie_app/routes/tv_show_details_binding.dart';
 import 'package:movie_app/views/home_page.dart';
+import 'package:movie_app/views/movies/movie_details_page.dart';
+import 'package:movie_app/views/tv/tv_show_details_page.dart';
 
 class Routes {
   static final route = [
@@ -15,6 +17,11 @@ class Routes {
       name: '/movie/:movieId',
       page: () => MovieDetailsPage(),
       binding: MovieDetailsBinding(),
+    ),
+    GetPage(
+      name: '/tv/:tvId',
+      page: () => TvShowDetailsPage(),
+      binding: TvShowDetailsBinding(),
     ),
   ];
 }

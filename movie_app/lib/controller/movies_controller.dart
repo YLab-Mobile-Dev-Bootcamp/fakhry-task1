@@ -40,7 +40,7 @@ class MoviesController extends GetxController {
   Widget loadMoviePosterWidget(int index) {
     return InkWell(
       onTap: () =>
-          Get.toNamed('/details/${movieTopRated.value.results![index].id!}'),
+          Get.toNamed('/movie/${movieTopRated.value.results![index].id!}'),
       child: Container(
         padding: EdgeInsetsDirectional.fromSTEB(
             miniSpace, noSpace, miniSpace, noSpace),
@@ -60,7 +60,7 @@ class MoviesController extends GetxController {
   Widget loadMovieBackdropWidget(int index) {
     return InkWell(
       onTap: () =>
-          Get.toNamed('/details/${moviesPopular.value.results![index].id!}'),
+          Get.toNamed('/movie/${moviesPopular.value.results![index].id!}'),
       child: Container(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(regularCornerRad),
