@@ -49,7 +49,7 @@ class MovieDetailsDto {
   String? posterPath;
   List<ProductionCompany>? productionCompanies;
   List<ProductionCountry>? productionCountries;
-  DateTime? releaseDate;
+  String? releaseDate;
   int? revenue;
   int? runtime;
   List<SpokenLanguage>? spokenLanguages;
@@ -81,7 +81,7 @@ class MovieDetailsDto {
         productionCountries: List<ProductionCountry>.from(
             json["production_countries"]
                 .map((x) => ProductionCountry.fromJson(x))),
-        releaseDate: DateTime.parse(json["release_date"]),
+        releaseDate: json["release_date"],
         revenue: json["revenue"],
         runtime: json["runtime"],
         spokenLanguages: List<SpokenLanguage>.from(
@@ -113,7 +113,7 @@ class MovieDetailsDto {
         "production_countries":
             List<dynamic>.from(productionCountries!.map((x) => x.toJson())),
         "release_date":
-            "${releaseDate!.year.toString().padLeft(4, '0')}-${releaseDate!.month.toString().padLeft(2, '0')}-${releaseDate!.day.toString().padLeft(2, '0')}",
+            "${releaseDate!.padLeft(4, '0')}-${releaseDate!.padLeft(2, '0')}-${releaseDate!.padLeft(2, '0')}",
         "revenue": revenue,
         "runtime": runtime,
         "spoken_languages":

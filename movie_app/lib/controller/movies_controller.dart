@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
+import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/const/constants.dart';
 import 'package:movie_app/models/movies_dto.dart';
 import 'package:movie_app/repositories/movie_db_api.dart';
@@ -69,28 +70,31 @@ class MoviesController extends GetxController {
                     moviesPopular.value.results![index].backdropPath!),
               ),
               Container(
-                alignment: Alignment.bottomCenter,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.center,
-                    end: Alignment.bottomCenter,
-                    colors: <Color>[
-                      Color(0x0),
-                      Color(0xff000000),
-                    ],
+                  alignment: Alignment.bottomCenter,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.center,
+                      end: Alignment.bottomCenter,
+                      colors: <Color>[
+                        Color(0x0),
+                        Color(0xff000000),
+                      ],
+                    ),
                   ),
-                ),
-                child: Text(
-                  moviesPopular.value.results![index].title!,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(bottom: 4),
+                    child: Text(
+                      moviesPopular.value.results![index].title!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )),
             ],
           ),
         ),

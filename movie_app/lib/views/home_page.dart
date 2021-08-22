@@ -1,138 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:movie_app/controller/movies_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:movie_app/themes/app_theme.dart';
+import 'package:movie_app/themes/colors.dart';
+import 'package:movie_app/views/movies_page.dart';
+import 'package:movie_app/views/tv_shows_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
-  final MoviesController _movieController = Get.find();
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: _homeContainer(context),
-      ),
-    );
-  }
-
-  Widget _homeContainer(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(bottom: 16.0),
-          height: MediaQuery.of(context).size.height / 4,
-          child: Obx(
-            () => _movieController.movieTopRated.value.results == null
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : NotificationListener<OverscrollIndicatorNotification>(
-                    onNotification:
-                        (OverscrollIndicatorNotification overscroll) {
-                      overscroll.disallowGlow();
-                      return true;
-                    },
-                    child: Scrollbar(
-                      isAlwaysShown: GetPlatform.isWeb || GetPlatform.isDesktop
-                          ? true
-                          : false,
-                      child: Center(
-                        child: Container(
-                          width: 1600,
-                          child: LayoutBuilder(
-                            builder: (context, constraint) {
-                              if (constraint.maxWidth <= 600) {
-                                return _listView();
-                              } else if (constraint.maxWidth <= 1200) {
-                                return _listView();
-                              } else {
-                                return _listView();
-                              }
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-          ),
-        ),
-        Text(
-          "Popular Movies",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        Container(
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
-            child: Obx(
-              () => _movieController.moviesPopular.value.results == null
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : NotificationListener<OverscrollIndicatorNotification>(
-                      onNotification:
-                          (OverscrollIndicatorNotification overscroll) {
-                        overscroll.disallowGlow();
-                        return true;
-                      },
-                      child: Scrollbar(
-                        isAlwaysShown:
-                            GetPlatform.isWeb || GetPlatform.isDesktop
-                                ? true
-                                : false,
-                        child: Center(
-                          child: Container(
-                            width: 1600,
-                            child: LayoutBuilder(
-                              builder: (context, constraint) {
-                                if (constraint.maxWidth <= 600) {
-                                  return _gridView(2);
-                                } else if (constraint.maxWidth <= 1200) {
-                                  return _gridView(3);
-                                } else {
-                                  return _gridView(4);
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+    return MaterialApp(
+      theme: AppTheme.lightTheme,
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(primaryBackground),
+          toolbarHeight: kMinInteractiveDimension,
+          bottom: TabBar(
+            controller: _tabController,
+            labelColor: Color(selectableText),
+            labelStyle: GoogleFonts.lato(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: Colors.white,
             ),
+            indicatorColor: Color(selectableText),
+            unselectedLabelColor: Color(primaryText),
+            tabs: const <Widget>[
+              Tab(
+                text: "Movies",
+              ),
+              Tab(
+                text: "Tv Shows",
+              ),
+            ],
           ),
         ),
-      ],
-    );
-  }
-
-  Widget _listView() {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: _movieController.movieTopRated.value.results!.length,
-      itemBuilder: (BuildContext context, int index) {
-        return _movieController.loadMoviePosterWidget(index);
-      },
-    );
-  }
-
-  Widget _gridView(int crossAxisCounter) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCounter,
-        crossAxisSpacing: 4,
-        mainAxisSpacing: 4,
-        childAspectRatio: 16 / 9,
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    SafeArea(
+                      child: MoviesPage(),
+                    ),
+                    SafeArea(
+                      child: TvShowsPage(),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
-      itemCount: _movieController.moviesPopular.value.results!.length,
-      itemBuilder: (BuildContext context, int index) {
-        return _movieController.loadMovieBackdropWidget(index);
-      },
     );
   }
 }
