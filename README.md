@@ -7,7 +7,15 @@ App that show lists of top rated and populars movies from [TheMovieDB API](https
 master : starter project (task1)\
 └─task2-widget-and-styling\
 &nbsp;&nbsp;&nbsp;&nbsp;└─task3-state-management-and-navigation\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─task4-networking
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─task4-networking\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─task5-responsive-and-advance-ui
 
-## Demo Task 4
-<img src="https://cdn.discordapp.com/attachments/791866991995650081/878517660130869308/task4.gif" height=400>
+## Figma Design - Task 5 (Expectation)
+<img src="https://cdn.discordapp.com/attachments/791866991995650081/879046522958905404/task5-0.png" height=400>\
+Source: [Figma Community - Rendy Vickriansyah](https://www.figma.com/community/file/1006119758184707289)
+
+## Demo Task 5 - Mobile App (Reality)
+<img src="https://cdn.discordapp.com/attachments/791866991995650081/879046677758099537/task5-2.gif" height=400>
+
+## Demo Task 5 - Web App
+<img src="https://cdn.discordapp.com/attachments/791866991995650081/879046663291949076/task5-1.gif" height=400>
