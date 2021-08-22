@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/controller/movies_controller.dart';
+import 'package:movie_app/themes/dimens.dart';
 
 class MoviesPage extends StatefulWidget {
   @override
@@ -18,17 +19,17 @@ class _MoviesPageState extends State<MoviesPage> {
     return ListView(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(bottom: 16, top: 16),
+          margin: EdgeInsets.only(bottom: regularSpace, top: regularSpace),
           child: Text("Top Rated All Times",
               textAlign: TextAlign.center,
               style: GoogleFonts.lato(
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: largeFontSize,
                 color: Colors.white,
               )),
         ),
         Container(
-          margin: EdgeInsets.only(bottom: 16),
+          margin: EdgeInsets.only(bottom: regularSpace),
           height: MediaQuery.of(context).size.height / 4,
           child: Obx(
             () => _movieController.movieTopRated.value.results == null
@@ -70,13 +71,14 @@ class _MoviesPageState extends State<MoviesPage> {
           textAlign: TextAlign.center,
           style: GoogleFonts.lato(
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: largeFontSize,
             color: Colors.white,
           ),
         ),
         Container(
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 32.0),
+            padding: EdgeInsetsDirectional.fromSTEB(
+                smallSpace, regularSpace, smallSpace, regularSpace),
             child: Obx(
               () => _movieController.moviesPopular.value.results == null
                   ? Center(

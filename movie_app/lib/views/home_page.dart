@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/themes/app_theme.dart';
 import 'package:movie_app/themes/colors.dart';
+import 'package:movie_app/themes/dimens.dart';
 import 'package:movie_app/views/movies/movies_page.dart';
 import 'package:movie_app/views/tv/tv_shows_page.dart';
 
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             labelColor: Color(selectableText),
             labelStyle: GoogleFonts.lato(
               fontWeight: FontWeight.bold,
-              fontSize: 18,
+              fontSize: largeFontSize,
               color: Colors.white,
             ),
             indicatorColor: Color(selectableText),

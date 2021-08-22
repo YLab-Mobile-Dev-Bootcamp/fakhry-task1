@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/controller/tv_shows_controller.dart';
+import 'package:movie_app/themes/dimens.dart';
 
 class TvShowsPage extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _TvShowsPage extends State<TvShowsPage> {
     return ListView(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(bottom: 16, top: 16),
+          margin: EdgeInsets.only(bottom: regularSpace, top: regularSpace),
           child: Text("Top Rated All Times",
               textAlign: TextAlign.center,
               style: GoogleFonts.lato(
@@ -28,7 +29,7 @@ class _TvShowsPage extends State<TvShowsPage> {
               )),
         ),
         Container(
-          margin: EdgeInsets.only(bottom: 16),
+          margin: EdgeInsets.only(bottom: regularSpace),
           height: MediaQuery.of(context).size.height / 4,
           child: Obx(
             () => _controller.tvShowTopRated.value.results == null
@@ -76,7 +77,8 @@ class _TvShowsPage extends State<TvShowsPage> {
         ),
         Container(
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 32.0),
+            padding: EdgeInsetsDirectional.fromSTEB(
+                smallSpace, regularSpace, smallSpace, regularSpace),
             child: Obx(
               () => _controller.tvShowsPopular.value.results == null
                   ? Center(

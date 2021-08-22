@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/const/constants.dart';
 import 'package:movie_app/models/movies_dto.dart';
 import 'package:movie_app/repositories/movie_db_api.dart';
+import 'package:movie_app/themes/colors.dart';
+import 'package:movie_app/themes/dimens.dart';
 
 class MoviesController extends GetxController {
   MovieDbApi _movieDbApi = MovieDbApi();
@@ -40,10 +42,11 @@ class MoviesController extends GetxController {
       onTap: () =>
           Get.toNamed('/details/${movieTopRated.value.results![index].id!}'),
       child: Container(
-        padding: EdgeInsetsDirectional.fromSTEB(4.0, 0, 4.0, 0),
+        padding: EdgeInsetsDirectional.fromSTEB(
+            miniSpace, noSpace, miniSpace, noSpace),
         height: 50,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(regularCornerRad),
           child: Image(
             fit: BoxFit.fill,
             image: NetworkImage(
@@ -60,7 +63,7 @@ class MoviesController extends GetxController {
           Get.toNamed('/details/${moviesPopular.value.results![index].id!}'),
       child: Container(
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(regularCornerRad),
           child: Stack(
             fit: StackFit.loose,
             children: <Widget>[
@@ -76,13 +79,13 @@ class MoviesController extends GetxController {
                       begin: Alignment.center,
                       end: Alignment.bottomCenter,
                       colors: <Color>[
-                        Color(0x0),
-                        Color(0xff000000),
+                        Color(transparent),
+                        Color(black),
                       ],
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.only(bottom: 4),
+                    padding: EdgeInsetsDirectional.only(bottom: miniSpace),
                     child: Text(
                       moviesPopular.value.results![index].title!,
                       maxLines: 1,
@@ -90,7 +93,7 @@ class MoviesController extends GetxController {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.lato(
                         fontWeight: FontWeight.normal,
-                        fontSize: 12,
+                        fontSize: regularFontSize,
                         color: Colors.white,
                       ),
                     ),
@@ -112,13 +115,13 @@ class MoviesController extends GetxController {
     _closeCurrentDialog();
     Get.defaultDialog(
       barrierDismissible: false,
-      titleStyle: TextStyle(fontSize: 24),
-      middleTextStyle: TextStyle(fontSize: 18),
+      titleStyle: TextStyle(fontSize: largeFontSize),
+      middleTextStyle: TextStyle(fontSize: regularFontSize),
       title: title,
       middleText: middleText,
       textConfirm: 'OK',
-      radius: 17,
-      confirmTextColor: Colors.black87,
+      radius: regularCornerRad,
+      confirmTextColor: Color(selectableText),
       onConfirm: () {
         Navigator.of(Get.overlayContext!).pop();
       },
