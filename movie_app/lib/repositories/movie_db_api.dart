@@ -1,21 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:movie_app/const/constants.dart';
 import 'package:movie_app/models/movies_details_dto.dart';
-import 'package:movie_app/models/movies_popular_dto.dart';
-import 'package:movie_app/models/movies_top_rated_dto.dart';
+import 'package:movie_app/models/movies_dto.dart';
 
 class MovieDbApi {
   // Fetch movies popular
-  Future<MoviesPopularDto> getMoviesPopular() async {
+  Future<MoviesDto> getMoviesPopular() async {
     var path = 'movie/popular';
     var param = '?api_key=';
-    MoviesPopularDto output = MoviesPopularDto();
+    MoviesDto output = MoviesDto();
 
     try {
       Dio _dio = Dio();
       Response response = await _dio.get(BASE_API + path + param + API_KEY);
       if (response.statusCode == 200) {
-        output = MoviesPopularDto.fromJson(response.data);
+        output = MoviesDto.fromJson(response.data);
       }
     } catch (e) {
       print(e);
@@ -24,16 +23,16 @@ class MovieDbApi {
   }
 
   // Fetch top rated
-  Future<MoviesTopRatedDto> getMoviesTopRated() async {
+  Future<MoviesDto> getMoviesTopRated() async {
     var path = 'movie/top_rated';
     var param = '?api_key=';
-    MoviesTopRatedDto output = MoviesTopRatedDto();
+    MoviesDto output = MoviesDto();
 
     try {
       Dio _dio = Dio();
       Response response = await _dio.get(BASE_API + path + param + API_KEY);
       if (response.statusCode == 200) {
-        output = MoviesTopRatedDto.fromJson(response.data);
+        output = MoviesDto.fromJson(response.data);
       }
     } catch (e) {
       print(e);

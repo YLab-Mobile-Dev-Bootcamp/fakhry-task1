@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:movie_app/const/constants.dart';
-import 'package:movie_app/models/movies_popular_dto.dart';
-import 'package:movie_app/models/movies_top_rated_dto.dart';
+import 'package:movie_app/models/movies_dto.dart';
 import 'package:movie_app/repositories/movie_db_api.dart';
 
 class MoviesController extends GetxController {
   MovieDbApi _movieDbApi = MovieDbApi();
-  Rx<MoviesPopularDto> moviesPopular = MoviesPopularDto().obs;
-  Rx<MoviesTopRatedDto> movieTopRated = MoviesTopRatedDto().obs;
+  Rx<MoviesDto> moviesPopular = new MoviesDto().obs;
+  Rx<MoviesDto> movieTopRated = new MoviesDto().obs;
 
   @override
   void onInit() {
@@ -47,7 +46,7 @@ class MoviesController extends GetxController {
           child: Image(
             fit: BoxFit.fill,
             image: NetworkImage(
-                BASE_IMAGE + movieTopRated.value.results ![index].posterPath!),
+                BASE_IMAGE + movieTopRated.value.results![index].posterPath!),
           ),
         ),
       ),
@@ -83,6 +82,9 @@ class MoviesController extends GetxController {
                 ),
                 child: Text(
                   moviesPopular.value.results![index].title!,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

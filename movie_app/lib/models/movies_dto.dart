@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-MoviesTopRatedDto movieResponseFromJson(String str) =>
-    MoviesTopRatedDto.fromJson(json.decode(str));
+MoviesDto movieResponseFromJson(String str) =>
+    MoviesDto.fromJson(json.decode(str));
 
-String movieResponseToJson(MoviesTopRatedDto data) =>
-    json.encode(data.toJson());
+String movieResponseToJson(MoviesDto data) => json.encode(data.toJson());
 
-class MoviesTopRatedDto {
-  MoviesTopRatedDto({
+class MoviesDto {
+  MoviesDto({
     this.page,
     this.results,
     this.totalPages,
@@ -19,8 +18,8 @@ class MoviesTopRatedDto {
   int? totalPages;
   int? totalResults;
 
-  factory MoviesTopRatedDto.fromJson(Map<String, dynamic> json) =>
-      MoviesTopRatedDto(
+  factory MoviesDto.fromJson(Map<String, dynamic> json) =>
+      MoviesDto(
         page: json["page"],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromJson(x))),

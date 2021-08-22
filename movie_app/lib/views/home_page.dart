@@ -9,102 +9,99 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Movie App"),
+      body: SafeArea(
+        child: _homeContainer(context),
       ),
-      body: _homeContainer(context)
     );
   }
 
   Widget _homeContainer(BuildContext context) {
-    return Column(
+    return ListView(
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(bottom: 16.0),
           height: MediaQuery.of(context).size.height / 4,
           child: Obx(
-                () =>
-            _movieController.movieTopRated.value.results == null
+            () => _movieController.movieTopRated.value.results == null
                 ? Center(
-              child: CircularProgressIndicator(),
-            )
+                    child: CircularProgressIndicator(),
+                  )
                 : NotificationListener<OverscrollIndicatorNotification>(
-              onNotification:
-                  (OverscrollIndicatorNotification overscroll) {
-                overscroll.disallowGlow();
-                return true;
-              },
-              child: Scrollbar(
-                isAlwaysShown:
-                GetPlatform.isWeb || GetPlatform.isDesktop
-                    ? true
-                    : false,
-                child: Center(
-                  child: Container(
-                    width: 1600,
-                    child: LayoutBuilder(
-                      builder: (context, constraint) {
-                        if (constraint.maxWidth <= 600) {
-                          return _listView();
-                        } else if (constraint.maxWidth <= 1200) {
-                          return _listView();
-                        } else {
-                          return _listView();
-                        }
-                      },
+                    onNotification:
+                        (OverscrollIndicatorNotification overscroll) {
+                      overscroll.disallowGlow();
+                      return true;
+                    },
+                    child: Scrollbar(
+                      isAlwaysShown: GetPlatform.isWeb || GetPlatform.isDesktop
+                          ? true
+                          : false,
+                      child: Center(
+                        child: Container(
+                          width: 1600,
+                          child: LayoutBuilder(
+                            builder: (context, constraint) {
+                              if (constraint.maxWidth <= 600) {
+                                return _listView();
+                              } else if (constraint.maxWidth <= 1200) {
+                                return _listView();
+                              } else {
+                                return _listView();
+                              }
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ),
           ),
         ),
         Text(
           "Popular Movies",
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
         ),
-        Expanded(
+        Container(
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
             child: Obx(
-                  () =>
-              _movieController.moviesPopular.value.results == null
+              () => _movieController.moviesPopular.value.results == null
                   ? Center(
-                child: CircularProgressIndicator(),
-              )
+                      child: CircularProgressIndicator(),
+                    )
                   : NotificationListener<OverscrollIndicatorNotification>(
-                onNotification:
-                    (OverscrollIndicatorNotification overscroll) {
-                  overscroll.disallowGlow();
-                  return true;
-                },
-                child: Scrollbar(
-                  isAlwaysShown:
-                  GetPlatform.isWeb || GetPlatform.isDesktop
-                      ? true
-                      : false,
-                  child: Center(
-                    child: Container(
-                      width: 1600,
-                      child: LayoutBuilder(
-                        builder: (context, constraint) {
-                          if (constraint.maxWidth <= 600) {
-                            return _gridView(2);
-                          } else if (constraint.maxWidth <= 1200) {
-                            return _gridView(3);
-                          } else {
-                            return _gridView(4);
-                          }
-                        },
+                      onNotification:
+                          (OverscrollIndicatorNotification overscroll) {
+                        overscroll.disallowGlow();
+                        return true;
+                      },
+                      child: Scrollbar(
+                        isAlwaysShown:
+                            GetPlatform.isWeb || GetPlatform.isDesktop
+                                ? true
+                                : false,
+                        child: Center(
+                          child: Container(
+                            width: 1600,
+                            child: LayoutBuilder(
+                              builder: (context, constraint) {
+                                if (constraint.maxWidth <= 600) {
+                                  return _gridView(2);
+                                } else if (constraint.maxWidth <= 1200) {
+                                  return _gridView(3);
+                                } else {
+                                  return _gridView(4);
+                                }
+                              },
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
             ),
           ),
         ),
@@ -124,6 +121,8 @@ class HomePage extends StatelessWidget {
 
   Widget _gridView(int crossAxisCounter) {
     return GridView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCounter,
         crossAxisSpacing: 4,
