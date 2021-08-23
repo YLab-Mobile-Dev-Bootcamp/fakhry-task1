@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/themes/app_theme.dart';
 import 'package:movie_app/themes/colors.dart';
@@ -26,48 +27,54 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: AppTheme.lightTheme,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(primaryBackground),
-          toolbarHeight: kMinInteractiveDimension,
-          bottom: TabBar(
-            controller: _tabController,
-            labelColor: Color(selectableText),
-            labelStyle: GoogleFonts.lato(
-              fontWeight: FontWeight.bold,
-              fontSize: largeFontSize,
-              color: Colors.white,
-            ),
-            indicatorColor: Color(selectableText),
-            unselectedLabelColor: Color(primaryText),
-            tabs: const <Widget>[
-              Tab(
-                text: "Movies",
-              ),
-              Tab(
-                text: "Tv Shows",
-              ),
-            ],
-          ),
+      home: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.light,
+          systemNavigationBarIconBrightness: Brightness.light,
         ),
-        body: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    SafeArea(
-                      child: MoviesPage(),
-                    ),
-                    SafeArea(
-                      child: TvShowsPage(),
-                    ),
-                  ],
-                ),
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color(primaryBackground),
+            toolbarHeight: kMinInteractiveDimension,
+            bottom: TabBar(
+              controller: _tabController,
+              labelColor: Color(selectableText),
+              labelStyle: GoogleFonts.lato(
+                fontWeight: FontWeight.bold,
+                fontSize: largeFontSize,
+                color: Colors.white,
               ),
-            ],
+              indicatorColor: Color(selectableText),
+              unselectedLabelColor: Color(primaryText),
+              tabs: const <Widget>[
+                Tab(
+                  text: "Movies",
+                ),
+                Tab(
+                  text: "Tv Shows",
+                ),
+              ],
+            ),
+          ),
+          body: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      SafeArea(
+                        child: MoviesPage(),
+                      ),
+                      SafeArea(
+                        child: TvShowsPage(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/const/constants.dart';
@@ -16,44 +17,50 @@ class MovieDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: AppTheme.lightTheme,
-      home: Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              child: Obx(
-                () => _controller.movieDetails.value.title == null
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : NotificationListener<OverscrollIndicatorNotification>(
-                        onNotification:
-                            (OverscrollIndicatorNotification overscroll) {
-                          overscroll.disallowGlow();
-                          return true;
-                        },
-                        child: Scrollbar(
-                          isAlwaysShown:
-                              GetPlatform.isWeb || GetPlatform.isDesktop
-                                  ? true
-                                  : false,
-                          child: Center(
-                            child: Container(
-                              width: 1600,
-                              child: LayoutBuilder(
-                                builder: (context, constraint) {
-                                  if (constraint.maxWidth <= 600) {
-                                    return _bodyWidget(context);
-                                  } else if (constraint.maxWidth <= 1400) {
-                                    return _bodyWidget(context);
-                                  } else {
-                                    return _bodyWidget(context);
-                                  }
-                                },
+      home: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarIconBrightness: Brightness.light,
+          systemNavigationBarIconBrightness: Brightness.light,
+        ),
+        child: Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Container(
+                child: Obx(
+                  () => _controller.movieDetails.value.title == null
+                      ? Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : NotificationListener<OverscrollIndicatorNotification>(
+                          onNotification:
+                              (OverscrollIndicatorNotification overscroll) {
+                            overscroll.disallowGlow();
+                            return true;
+                          },
+                          child: Scrollbar(
+                            isAlwaysShown:
+                                GetPlatform.isWeb || GetPlatform.isDesktop
+                                    ? true
+                                    : false,
+                            child: Center(
+                              child: Container(
+                                width: 1600,
+                                child: LayoutBuilder(
+                                  builder: (context, constraint) {
+                                    if (constraint.maxWidth <= 600) {
+                                      return _bodyWidget(context);
+                                    } else if (constraint.maxWidth <= 1400) {
+                                      return _bodyWidget(context);
+                                    } else {
+                                      return _bodyWidget(context);
+                                    }
+                                  },
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
+                ),
               ),
             ),
           ),
